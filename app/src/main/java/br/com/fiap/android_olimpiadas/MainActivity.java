@@ -6,7 +6,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     EditText idade;
     Spinner spinner;
     RadioGroup rgrPerido;
+    RadioButton rbtPeriodo;
+    ArrayAdapter adapter;
 
     //Dialog
     private Dialog dialog;
@@ -28,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupUI();
+
+        String[] items = {"Futebol", "Nataçâo", "Basquete"};
+        adapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, items);
+        spinner.setAdapter(adapter);
+
 
     }
 
@@ -49,16 +58,21 @@ public class MainActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ingresso_dialog);
 
+        //Pega item selecionado no RadioGroup
+        rbtPeriodo = (RadioButton) findViewById(rgrPerido.getCheckedRadioButtonId());
+
         //Ligacoes com o Dialog
         edtNomeD = (EditText) dialog.findViewById(R.id.edtNomeD);
         edtIdadeD = (EditText) dialog.findViewById(R.id.edtIdadeD);
         edtModalidadeD = (EditText) dialog.findViewById(R.id.edtModalidadeD);
         edtPeriodoD = (EditText) dialog.findViewById(R.id.edtPeriodoD);
 
+
         //Tranferir da main para o Dialog
         edtNomeD.setText(nome.getText());
         edtIdadeD.setText(idade.getText());
         edtModalidadeD.setText(String.valueOf(spinner.getSelectedItem()));
+        edtPeriodoD.setText(rbtPeriodo.getText());
 
         dialog.show();
 
@@ -84,5 +98,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.dismiss();
         nome.setText("");
         idade.setText("");
+        rgrPerido.clearCheck();
+        spinner.setSelection(0);
+
     }
 }
