@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Ingressos Olimpiadas</string>
+    <string name="txtIngressos">Ingressos</string>
+    <string name="txtNome">Nome:</string>
+    <string name="txtIdade">Idade:</string>
+    <string name="txtModalidade">Modalidade:</string>
     <string-array name="modalidades">
         <item>Futebol</item>
         <item>Basquete</item>

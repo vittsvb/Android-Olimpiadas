@@ -14,15 +14,14 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Tela principal
+    //Var da Tela principal
     EditText nome;
     EditText idade;
     Spinner spinner;
     RadioGroup rgrPerido;
     RadioButton rbtPeriodo;
-    ArrayAdapter adapter;
 
-    //Dialog
+    //Var do Dialog
     private Dialog dialog;
     private EditText edtNomeD, edtIdadeD, edtModalidadeD, edtPeriodoD;
 
@@ -33,20 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
         setupUI();
 
-        String[] items = {"Futebol", "Nataçâo", "Basquete"};
-        adapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, items);
-        spinner.setAdapter(adapter);
-
-
     }
 
     public void setupUI(){
+        //Setup Main
         nome = (EditText) findViewById(R.id.nome);
         idade = (EditText) findViewById(R.id.idade);
         spinner = (Spinner) findViewById(R.id.spinner);
         rgrPerido = (RadioGroup) findViewById(R.id.rgrPerido);
 
-        //Dialog
+        //Setup Dialog
         edtNomeD = (EditText) findViewById(R.id.edtNomeD);
         edtIdadeD = (EditText) findViewById(R.id.edtIdadeD);
         edtModalidadeD = (EditText) findViewById(R.id.edtModalidadeD);
@@ -54,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Botão Reservar
     public void reservar(View view){
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ingresso_dialog);
@@ -78,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Botão Finalizar
     public void finalizar (View view){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle("Confimarção");
@@ -94,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         b.show();
     }
 
+    //Apaga campos
     public void encerrar(){
         dialog.dismiss();
         nome.setText("");
